@@ -19,9 +19,9 @@ test_that("Inconsistent dimensions produce an error", {
 test_that("Arrays are created with proper dimension names", {
   x <- makearray(seq_len(length(LETTERS) * length(month.name) * 5),
                  letter=LETTERS, month=month.name, i=1:5)
-  expect_equivalent(dimnames(x), list(letter=LETTERS, month=month.name, i=as.character(1:5)))
+  expect_identical(dimnames(x), list(letter=LETTERS, month=month.name, i=as.character(1:5)))
   
   y <- makearray(seq_len(length(LETTERS) * length(month.name) * 5),
-                 letters=LETTERS, month=month.name, 5)
-  expect_equivalent(dimnames(y), list(letter=LETTERS, month=month.name, NULL))
+                 letter=LETTERS, month=month.name, 5)
+  expect_identical(dimnames(y), list(letter=LETTERS, month=month.name, NULL))
 })
