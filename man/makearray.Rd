@@ -20,13 +20,15 @@
   dimension length, or it can be a vector of values, in
   which case the values specify names along that dimension.
   If a dimension argument is -1, the length of that
-  dimension will be inferred. The order of dimension
-  arguments will match the order of the dimensions in the
-  created array.
+  dimension will be inferred based on the length of the
+  data and the length of the other dimensions. The order of
+  dimension arguments will match the order of the
+  dimensions in the created array.
 }
 \details{
   Note that if you wish to create a dimension of length one
   with a ``numeric'' name, you must pass the name in as a
-  character.
+  character vector. A numeric vector of length one is
+  always taken to be a dimension length.
 }
 
