@@ -7,3 +7,4 @@ Author: Peyton McCullough
 Maintainer: Peyton McCullough <peyton@peytonmccullough.com>
 Description: Provides tools for working with arrays.
 License: MIT
+Suggests: testthat
