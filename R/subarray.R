@@ -1,3 +1,12 @@
+.get.subset.args <- function(x, ...) {
+  indices <- rep(TRUE, length(dimnames(x)))
+  call.indices <- list(...)
+  for (dim.name in names(call.indices)) {
+    indices[match(dim.name, names(dimnames(x)))] <- call.indices[dim.name]
+  }
+  args <- c(list(x), indices)
+}
+
 #' Subset an array based on names
 #' 
 #' \code{subarray} subsets an array based on dimension names, providing
@@ -8,11 +17,13 @@
 #' @param drop whether to drop dimensions whenever possible
 #' @return a subset of \code{x}
 subarray <- function(x, ..., drop=FALSE) {
-  indices <- rep(TRUE, length(dimnames(x)))
-  call.indices <- list(...)
-  for (dim.name in names(call.indices)) {
-    indices[match(dim.name, names(dimnames(x)))] <- call.indices[dim.name]
-  }
-  args <- c(list(x), indices, drop=drop)
+  args <- .get.subset.args(x, ...)
+  args$drop <- drop
   do.call(`[`, args)
+}
+
+`subarray<-` <- function(x, ..., value) {
+  args <- .get.subset.args(x, ...)
+  args$value <- value
+  do.call(`[<-`, args)
 }
